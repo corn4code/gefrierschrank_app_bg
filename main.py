@@ -56,5 +56,55 @@ def sort_mhd_high_low(obj_list):
         print(obj.name, obj.mhd)
     return rank_list
 
+def sort_dof_low_high(obj_list):
+    rank_list = []
+    platz = 0
+    for obj in obj_list:
+        if len(rank_list) == 0:
+            rank_list.append(obj)
+        else:
+            for i in range(len(rank_list)):
+                for j in range(3):
+                    if obj.compair_dof[j] > rank_list[i].compair_dof[j]:
+                        platz += 1
+                        break
+                    if obj.compair_dof[j] < rank_list[i].compair_dof[j]:
+                        platz += 0
+                        break
+                    if obj.compair_dof[j] == rank_list[i].compair_dof[j]:
+                        continue
+            rank_list.insert(platz, obj)
+    for obj in rank_list:
+        print(obj.name, obj.dof)
+    return rank_list
+
+def sort_dof_high_low(obj_list):
+    rank_list = []
+    platz = 0
+    for obj in obj_list:
+        if len(rank_list) == 0:
+            rank_list.append(obj)
+        else:
+            for i in range(len(rank_list)):
+                for j in range(3):
+                    if obj.compair_dof[j] < rank_list[i].compair_dof[j]:
+                        platz += 1
+                        break
+                    if obj.compair_dof[j] > rank_list[i].compair_dof[j]:
+                        platz += 0
+                        break
+                    if obj.compair_dof[j] == rank_list[i].compair_dof[j]:
+                        continue
+            rank_list.insert(platz, obj)
+    for obj in rank_list:
+        print(obj.name, obj.mhd)
+    return rank_list
+
+
 print(sort_mhd_low_high(obj_list))
+print("-----------")
 print(sort_mhd_high_low(obj_list))
+print("<!-----------!>")
+print(sort_dof_low_high(obj_list))
+print("-----------")
+print(sort_dof_high_low(obj_list))
