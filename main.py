@@ -1,21 +1,22 @@
 from item_class import *
 
-
 obj_list = []
+obj = Item("Kroketten", "30.12.22", "Kartoffeln")
+obj_list.append(obj)
 obj = Item("Pommes riffel", "31.12.2024","Pommes")
 obj_list.append(obj)
 obj = Item("Brezeln", "15.05.2022", "Backwaren")
 obj_list.append(obj)
 obj = Item("Steak", "13.5.22", "Fleisch")
 obj_list.append(obj)
-# for obj in obj_list:
-#     print(obj.name,obj.mhd,obj.compair_mhd,obj.dof,obj.compair_dof)
+for obj in obj_list:
+    print(obj.name,"\t",obj.mhd,"\t",obj.compair_mhd,"\t",obj.dof,"\t",obj.compair_dof,"\t",obj.kategorie)
 
 
 def sort_mhd_low_high(obj_list):
     rank_list = []
-    platz = 0
     for obj in obj_list:
+        platz = 0
         if len(rank_list) == 0:
             rank_list.append(obj)
         else:
@@ -34,10 +35,11 @@ def sort_mhd_low_high(obj_list):
         print(obj.name, obj.mhd)
     return rank_list
 
+
 def sort_mhd_high_low(obj_list):
     rank_list = []
-    platz = 0
     for obj in obj_list:
+        platz = 0
         if len(rank_list) == 0:
             rank_list.append(obj)
         else:
@@ -58,8 +60,8 @@ def sort_mhd_high_low(obj_list):
 
 def sort_dof_low_high(obj_list):
     rank_list = []
-    platz = 0
     for obj in obj_list:
+        platz = 0
         if len(rank_list) == 0:
             rank_list.append(obj)
         else:
@@ -80,8 +82,8 @@ def sort_dof_low_high(obj_list):
 
 def sort_dof_high_low(obj_list):
     rank_list = []
-    platz = 0
     for obj in obj_list:
+        platz = 0
         if len(rank_list) == 0:
             rank_list.append(obj)
         else:
@@ -97,7 +99,7 @@ def sort_dof_high_low(obj_list):
                         continue
             rank_list.insert(platz, obj)
     for obj in rank_list:
-        print(obj.name, obj.mhd)
+        print(obj.name, obj.dof)
     return rank_list
 
 
