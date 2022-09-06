@@ -1,7 +1,14 @@
 from calendar import month
 import re
-import datetime
-test_date = "31.07.2023"
+from datetime import datetime
+
+date = datetime.now().date()
+print(date)
+# o_g = 1 if input("open? (y/n)").lower().strip() == "y" else 0
+# print(o_g)
+test = input("djk: ").strip()
+print(test)
+#test_date = "31.07.2023"
 
 # valid_date = re.search("^([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.|-|/)([1-9]|0[1-9]|1[0-2])(\.|-|/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])$",test_date)
 # if valid_date:
@@ -25,5 +32,5 @@ test_date = "31.07.2023"
 # compair_dof = [int(year[2:]), int(month),int(day)]
 # print(show_dof, "\t",compair_dof)
 
-for i in range(len(["d",1,1,1])):
-    print(i)
+# for i in range(len(["d",1,1,1])):
+#     print(i)
