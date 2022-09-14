@@ -1,13 +1,16 @@
 from calendar import month
 import re
 from datetime import datetime
+import os
 
-date = datetime.now().date()
-print(date)
+print(os.getcwd())
+
+# date = datetime.now().date()
+# print(date)
 # o_g = 1 if input("open? (y/n)").lower().strip() == "y" else 0
 # print(o_g)
-test = input("djk: ").strip()
-print(test)
+# test = input("djk: ").strip()
+# print(test)
 #test_date = "31.07.2023"
 
 # valid_date = re.search("^([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.|-|/)([1-9]|0[1-9]|1[0-2])(\.|-|/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])$",test_date)

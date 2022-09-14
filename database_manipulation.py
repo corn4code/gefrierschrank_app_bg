@@ -27,11 +27,37 @@ def add_item(item, kat_item, o_g, bild=None):
     except:
         connection.close()
 
-item = input("Item: " ).strip()
-kat_item = input("kategory? ").strip()
-o_g = 1 if input("open? (y/n)").lower().strip() == "y" else 0
+def delete_item(item):
+    try:
+        cursor.execute("""DELETE FROM inhalt WHERE gegenstand=?""", (item, ))
+        connection.commit()
+    except:
+        connection.close()
 
-add_item(item, kat_item, o_g)
+def chg_open_status(item):
+    try:
+        zustand = cursor.execute("""SELECT offen_geschlossen FROM inhalt WHERE gegenstand=?""", (item, ))
+        if str(zustand) == "0":
+            cursor.execute("""UPDATE inhalt SET offen_geschlossen = 1""")
+        else:
+            cursor.execute("""UPDATE inhalt SET offen_geschlossen = 0""")
+            
+        connection.commit()
+
+    except:
+        connection.close()
+    pass
+
+def chg_anzahl(item):
+    pass
+
+# item = input("Item: " ).strip()
+# kat_item = input("kategory? ").strip()
+# o_g = 1 if input("open? (y/n)").lower().strip() == "y" else 0
+
+# add_item(item, kat_item, o_g)
+# chg_open_status("test")
+delete_item("test")
 
 connection.close()
 
