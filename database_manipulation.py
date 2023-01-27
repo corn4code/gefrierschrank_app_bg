@@ -10,6 +10,7 @@ def initial_creation():
             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             gegenstand TEXT,
             kategorie TEXT,
+            anzahl INT,
             offen_geschlossen BOOLEAN,
             bild TEXT,
             hinzugefügt_am DATE
@@ -19,10 +20,10 @@ def initial_creation():
     except:
         connection.close()
 
-def add_item(item, kat_item, o_g, bild=None):
+def add_item(item, kat_item, o_g, anzahl=1, bild=None):
     try:
         current_date = str(datetime.now().date())
-        cursor.execute("""INSERT INTO inhalt (gegenstand, hinzugefügt_am, kategorie, offen_geschlossen, bild) VALUES (?, ?, ?, ?, ?)""",(item, current_date, kat_item, o_g, bild))
+        cursor.execute("""INSERT INTO inhalt (gegenstand, hinzugefügt_am, kategorie, offen_geschlossen, anzahl, bild) VALUES (?, ?, ?, ?, ?, ?)""",(item, current_date, kat_item, o_g, anzahl, bild))
         connection.commit()
     except:
         connection.close()
@@ -34,30 +35,35 @@ def delete_item(item):
     except:
         connection.close()
 
-def chg_open_status(item):
-    try:
-        zustand = cursor.execute("""SELECT offen_geschlossen FROM inhalt WHERE gegenstand=?""", (item, ))
-        if str(zustand) == "0":
-            cursor.execute("""UPDATE inhalt SET offen_geschlossen = 1""")
-        else:
-            cursor.execute("""UPDATE inhalt SET offen_geschlossen = 0""")
-            
-        connection.commit()
+# def chg_open_status(item):
+# #try:
+#     cursor.execute("""UPDATE inhalte SET (SELECT offen_geschlossen FROM inhalt WHERE gegenstand=:was) CASE WHEN (SELECT offen_geschlossen FROM inhalt WHERE gegenstand=:was) = 1 THEN 0
+#                     ELSE 0 END;""", {"was":item})        
+#     connection.commit()
 
+#     # except:
+#     #     connection.close()
+# def chg_open doesnt work
+
+def chg_anzahl(item,plusminus):
+    try:
+        cursor.execute("UPDATE inhalt SET anzahl = anzahl + ? WHERE gegenstand = ?",(plusminus, item,))
+        connection.commit()
     except:
         connection.close()
-    pass
-
-def chg_anzahl(item):
-    pass
 
 # item = input("Item: " ).strip()
 # kat_item = input("kategory? ").strip()
 # o_g = 1 if input("open? (y/n)").lower().strip() == "y" else 0
-
+# anzahl = 3
 # add_item(item, kat_item, o_g)
-# chg_open_status("test")
-delete_item("test")
+chg_anzahl("weißbrot",3)
 
+# initial_creation()
+# add_item(item, kat_item,o_g,anzahl)
+
+# chg_anzahl('weißbrot',-1)
+
+connection.commit()
 connection.close()
 
